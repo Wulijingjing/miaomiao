@@ -52,12 +52,14 @@
             message:function(newValue){
                 var CancelToken = this.axios.CancelToken;
                 var source = CancelToken.source();
+                var cityId = this.$store.state.city.id;
+
                 // 取消上一次请求
                 this.cancelRequest();
                 var that = this;
                 console.log(this);
 
-                this.axios.get('/api/searchList?cityId=10&kw='+ newValue,
+                this.axios.get('/api/searchList?cityId=' + cityId + '&kw='+ newValue,
                     {
                     cancelToken: new this.axios.CancelToken(function executor(c) {
                         that.source = c;
